@@ -1,21 +1,17 @@
 // PC - GNB, LNB
+const bodyEl = document.querySelector('body')
 const gnbEl = document.querySelector('header .inner ul.gnb');
 const lnbEl = document.querySelector('nav.lnb');
+const isTablet = window.matchMedia("(max-width:1024px)").matches // 태블릿 가로 기준
 
-gnbEl.addEventListener('mouseenter', function() {
-    showNav();
-});
-gnbEl.addEventListener('mouseleave', function() {
-    hideNav();
-});
-
-lnbEl.addEventListener('mouseenter', function() {
-    showNav();
-});
-
-lnbEl.addEventListener('mouseleave', function() {
-    hideNav();
-});
+// 함수 선언
+function toggleNav() {
+    if (lnbEl.classList.contains('show')) {
+        hideNav();
+    } else {
+        showNav();
+    }
+}
 
 function showNav() {
     lnbEl.classList.add('show');
@@ -25,6 +21,38 @@ function hideNav() {
     lnbEl.classList.remove('show');
 
 }
+
+
+// 함수 호출
+if (isTablet) {
+    gnbEl.addEventListener('click', function(event) {
+        event.stopPropagation();
+        toggleNav()
+    });
+
+    lnbEl.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    bodyEl.addEventListener('click', function() {
+        hideNav();
+    });
+} else {
+    gnbEl.addEventListener('mouseenter', function() {
+        showNav();
+    });
+    gnbEl.addEventListener('mouseleave', function() {
+        hideNav();
+    });
+    lnbEl.addEventListener('mouseenter', function() {
+        showNav();
+    });
+    lnbEl.addEventListener('mouseleave', function() {
+        hideNav();
+    });
+}
+
+
 
 // 태블릿, 모바일 - 슬라이드 메뉴 버튼
 const openMenuEl = document.querySelector('header .open-menu');
