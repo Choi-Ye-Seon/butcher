@@ -127,6 +127,9 @@ new Swiper('.products .swiper', {
     slidesPerView: 1,
     grapCursor: true,
     spaceBetween: 40,
+    pagination: {
+        el: '.products .swiper-pagination'
+    },
     breakpoints: {
         412: {
             slidesPerView: "auto"
@@ -170,6 +173,9 @@ new Swiper('.branches .swiper', {
     slidesPerView: 1,
     grapCursor: true,
     spaceBetween: 40,
+    pagination: {
+        el: '.branches .swiper-pagination'
+    },
     breakpoints: {
         412: {
             slidesPerView: "auto",
@@ -183,6 +189,9 @@ new Swiper('.news .swiper', {
     slidesPerView: 1,
     grapCursor: true,
     spaceBetween: 40,
+    pagination: {
+        el: '.news .swiper-pagination'
+    },
     breakpoints: {
         412: {
             slidesPerView: "auto",
