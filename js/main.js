@@ -1,11 +1,24 @@
 // PC - GNB, LNB
-const bodyEl = document.querySelector('body')
+const bodyEl = document.querySelector('body');
 const gnbEl = document.querySelector('header .inner ul.gnb');
 const lnbEl = document.querySelector('nav.lnb');
-const isTablet = window.matchMedia("(max-width:1024px)").matches // 태블릿 가로 기준
+
+// 기기 초기화 함수 선언
+function initialize() {
+    const isTablet = window.matchMedia("(max-width:1024px)").matches // 태블릿 가로 기준
+
+    if (isTablet) {
+        setupTablet();
+    } else {
+        setupDesktop();
+    }
+}
+
 
 // 함수 선언
-function toggleNav() {
+function toggleNav(event) {
+    event.stopPropagation();
+
     if (lnbEl.classList.contains('show')) {
         hideNav();
     } else {
@@ -22,36 +35,28 @@ function hideNav() {
 
 }
 
-
-// 함수 호출
-if (isTablet) {
-    gnbEl.addEventListener('click', function(event) {
-        event.stopPropagation();
-        toggleNav()
-    });
+// 태블릿 이벤트 함수 선언
+function setupTablet() {
+    gnbEl.addEventListener('click', toggleNav);
+    bodyEl.addEventListener('click', hideNav);
 
     lnbEl.addEventListener('click', function(event) {
         event.stopPropagation();
     });
-
-    bodyEl.addEventListener('click', function() {
-        hideNav();
-    });
-} else {
-    gnbEl.addEventListener('mouseenter', function() {
-        showNav();
-    });
-    gnbEl.addEventListener('mouseleave', function() {
-        hideNav();
-    });
-    lnbEl.addEventListener('mouseenter', function() {
-        showNav();
-    });
-    lnbEl.addEventListener('mouseleave', function() {
-        hideNav();
-    });
 }
 
+// PC 이벤트 함수 선언
+function setupDesktop() {
+    gnbEl.addEventListener('mouseenter', showNav);
+    gnbEl.addEventListener('mouseleave', hideNav);
+    lnbEl.addEventListener('mouseenter', showNav);
+    lnbEl.addEventListener('mouseleave', hideNav);
+}
+
+// 초기화 함수 실행
+initialize();
+// 화면 크기 변경 시, 초기화
+window.addEventListener('resize', initialize);
 
 
 // 태블릿, 모바일 - 슬라이드 메뉴 버튼
