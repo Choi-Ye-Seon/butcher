@@ -687,6 +687,9 @@ nav.lnb.show {
 }
 
 @media (max-width: 768px) {
+    .choose .titleBox {
+        text-align: center;
+    }
     .choose .iconWrap {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -748,6 +751,7 @@ nav.lnb.show {
 }
 
 .branches .itemBox {
+    display: block;
     border: 1px solid var(--font-pointcolor);
     box-sizing: border-box;
     background-color: var(--section-bg);
@@ -779,6 +783,11 @@ nav.lnb.show {
     background-size: 16px;
     padding-bottom: 0.29em;
     word-break: keep-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .branches .itemBox .textBox .phone {
@@ -1061,6 +1070,7 @@ nav.lnb.show {
 
 .news .itemBox .textBox {
     padding: 1.76em 1.18em;
+    cursor: default;
 }
 
 .news .itemBox .textBox .headline {
@@ -1283,9 +1293,20 @@ footer .footerBox .infoBox p span.this-year {
     footer .companyBox .infoBox .address br {
         display: none;
     }
+    footer .footerBox ul.footer-menu {
+        justify-content: center;
+    }
+    footer .footerBox .infoBox p {
+        justify-content: center;
+        word-break: keep-all;
+        text-align: center;
+    }
 }
 
 @media (max-width:640px) {
+    footer .companyBox {
+        width: 100%;
+    }
     footer .companyBox .logo {
         font-size: 2.5rem;
     }
@@ -1294,6 +1315,16 @@ footer .footerBox .infoBox p span.this-year {
 @media (max-width:412px) {
     footer .companyBox .logo {
         font-size: 2.25rem;
+    }
+    footer .footerBox .infoBox p {
+        flex-direction: column;
+        align-items: center;
+    }
+    footer .footerBox .infoBox p.copyright {
+        flex-direction: row;
+    }
+    footer .footerBox .infoBox p span::after {
+        display: none;
     }
 }
 
